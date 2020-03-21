@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>All Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+
+    <div th:replace="/fragments/header :: header-css"/>
+
+</head>
+
+<body style="background-color:grey;">
+
+<div th:replace="/fragments/header :: header"/>
+
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${terminals}" class="container my-5">
+
+                <p class="my-5">
+                    <a href="/Terminal/edit" class="btn btn-primary">
+                        <i class="fas fa-user-plus ml-2"> Add Terminal </i></a>
+                </p>
+
+                <div class="col-md-10">
+                    <h2 th:case="null">No record found !!</h2>
+                    <div th:case="*">
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Balance</th>
+                                <th>Filial</th>
+                                <th>Operations</th>
+                                <th sec:authorize="hasAuthority('ROLE_ADMIN')">Edit</th>
+                                <th sec:authorize="hasAuthority('ROLE_ADMIN')">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="terminal : ${terminals}">
+                                <td th:text="${terminal.id}"></td>
+                                <td th:text="${terminal.balance}"></td>
+                                <td th:text="${terminal.filial_owner}"></td>
+                                <td>
+                                    <a th:href="@{/Operation/getid/{id}(id=${terminal.getId()})}" class="btn btn-primary">
+                                        <i class="fas fa-user-edit ml-2"></i>
+                                    </a>
+                                </td>
+                                <td sec:authorize="hasAuthority('ROLE_ADMIN')">
+                                    <a th:href="@{/Terminal/edit/{id}(id=${terminal.id})}" class="btn btn-primary">
+                                        <i class="fas fa-user-edit ml-2"></i>
+                                    </a>
+                                </td>
+                                <td sec:authorize="hasAuthority('ROLE_ADMIN')">
+                                    <a th:href="@{/Terminal/delete/{id}(id=${terminal.id})}" class="btn btn-primary">
+                                        <i class="fas fa-user-times ml-2"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="/fragments/footer :: footer"/>
+</body>
+
+</html>
