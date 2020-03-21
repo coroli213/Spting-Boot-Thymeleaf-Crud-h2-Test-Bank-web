@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <div th:fragment="header-css">
+
+        <title>Spring Boot Bank</title>
+
+        <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+              th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+              rel="stylesheet" media="screen"/>
+
+        <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+                th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+        <link rel="stylesheet" th:href="@{/css/main.css}"
+              href="../../css/main.css"/>
+
+    </div>
+
+</head>
+
+<body style="background-color:grey;">
+
+<div th:fragment="header">
+
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+
+            <div class="navbar-header" sec:authorize="isAuthenticated()">
+                <a class="navbar-brand" th:href="@{/Card}">Card</a>
+            </div>
+
+            <div class="navbar-header" sec:authorize="isAuthenticated()">
+                <a class="navbar-brand" th:href="@{/Client}">Client</a>
+            </div>
+
+            <div class="navbar-header" sec:authorize="isAuthenticated()">
+                <a class="navbar-brand" th:href="@{/Bill}">Bill</a>
+            </div>
+
+            <div class="navbar-header" sec:authorize="isAuthenticated()">
+                <a class="navbar-brand" th:href="@{/Operation}">Operation</a>
+            </div>
+
+            <div class="navbar-header" sec:authorize="isAuthenticated()">
+                <a class="navbar-brand" th:href="@{/Terminal}">Terminal</a>
+            </div>
+
+            <div id="navbar" class="collapse navbar-collapse navbar-right">
+
+                <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
+                    <li class="active"><a th:href="@{/User/edit}"><span sec:authentication="name"></span></a></li>
+                </ul>
+
+                <ul class="nav navbar-nav" sec:authorize="hasAuthority('ROLE_ADMIN')">
+                    <li class="active"><a th:href="@{/User}">Users</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav" sec:authorize="!isAuthenticated()">
+                    <li class="active"><a th:href="@{/registration}">Registration</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav" sec:authorize="!isAuthenticated()">
+                    <li class="active"><a th:href="@{/login}">Login</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
+                    <li class="active"><a th:href="@{/logout}">Sign Out</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+</div>
+
+</body>
+</html>
