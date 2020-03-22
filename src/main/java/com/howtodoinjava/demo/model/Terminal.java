@@ -28,14 +28,14 @@ public class Terminal {
 	public int  getBalance() {
 		return Balance;
 	}
-	public void setBalance(int Number) {
+	public void setBalance(int Balance) {
 		this.Balance = Balance;
 	}
 
 	public String getFilial_owner() {
 		return Filial_owner;
 	}
-	public void   setFilial_owner(String Date_of) {
+	public void   setFilial_owner(String Filial_owner) {
 		this.Filial_owner = Filial_owner;
 	}
 

@@ -15,15 +15,13 @@ public class Role {
     @Column(name = "role", unique = true)
     private String role;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles") //, cascade = CascadeType.ALL)
     private Collection<User> users;
 
     public Long getId() {
         return id;
     }
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) { this.id = id; }
 
     public String getRole() {
         return role;

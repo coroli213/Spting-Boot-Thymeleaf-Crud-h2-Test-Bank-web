@@ -43,7 +43,6 @@ public class BillService {
 		if(entity.getId()  == null)
 		{
 			entity = repository.save(entity);
-
 			return entity;
 		}
 		else
@@ -63,7 +62,6 @@ public class BillService {
 				return newEntity;
 			} else {
 				entity = repository.save(entity);
-
 				return entity;
 			}
 		}

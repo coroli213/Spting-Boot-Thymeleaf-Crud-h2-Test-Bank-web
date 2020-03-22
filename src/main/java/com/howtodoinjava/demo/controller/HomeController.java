@@ -22,6 +22,6 @@ public class HomeController {
         List<Client> list = service.getAllClients();
 
         model.addAttribute("clients", list);
-        return "Client";
+        return "home";
     }
 }

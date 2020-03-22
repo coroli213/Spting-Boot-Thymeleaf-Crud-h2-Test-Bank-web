@@ -44,10 +44,9 @@ public class User {
     @Column(name = "active", nullable = false)
     private int active;
 
-    @ManyToMany()
+    @ManyToMany()//cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
-
 
     public Long getId() {
         return id;
@@ -98,7 +97,18 @@ public class User {
         this.active = active;
     }
 
-    public Collection<Role> getRoles() { return roles; }
-    public void setRoles(Collection<Role> roles) { this.roles = roles; }
-}
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
 
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
+    public void clearRole() {
+        this.roles.clear();
+    }
+
+}

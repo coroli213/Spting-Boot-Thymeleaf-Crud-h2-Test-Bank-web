@@ -21,14 +21,14 @@ public class Operation {
 	@JoinColumn(name = "terminal_id", referencedColumnName = "terminal_id", nullable = false)
 	private Terminal terminal;
 
-	// @ManyToOne
-	// @JoinColumn(name = "account_from_id", referencedColumnName = "bill_id", nullable = false)
-	@Column(name="account_from_id", nullable=false)
+	//@ManyToOne
+	//@JoinColumn(name = "from_id", referencedColumnName = "bill_id", nullable = false)
+	@Column(name="Account_from")
 	private String Account_from;
 
 	//@ManyToOne
 	//@JoinColumn(name = "account_to_id", referencedColumnName = "bill_id", nullable = false)
-	@Column(name="account_to_id", nullable=false)
+	@Column(name="Account_to", nullable=false)
 	private String Account_to;
 
     public Long getId() {

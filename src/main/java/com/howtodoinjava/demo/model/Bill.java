@@ -15,7 +15,7 @@ public class Bill {
     @Column(name="Balance", nullable=false)
     private int Balance;
 
-    @Column(name="Bank", nullable=false)
+    @Column(name="Bank_owner", nullable=false)
 	private String Bank_owner;
 
 	@OneToMany(mappedBy = "bill")
@@ -34,14 +34,14 @@ public class Bill {
 	public int  getBalance() {
 		return Balance;
 	}
-	public void setBalance(int Number) {
+	public void setBalance(int Balance) {
 		this.Balance = Balance;
 	}
 
 	public String getBank_owner() {
 		return Bank_owner;
 	}
-	public void   setBank_owner(String Date_of) {
+	public void   setBank_owner(String Bank_owner) {
 		this.Bank_owner = Bank_owner;
 	}
 
@@ -51,10 +51,14 @@ public class Bill {
 	public void setCards(Collection<Card> cards) {
 		this.cards = cards;
 	}
-//
-//	public Collection<Operation> getOperation() { return operations; }
-//	public void setOperations(Collection<Operation> operations) { this.operations = operations; }
-//
+
+//	public Collection<Operation> getOperation() {
+//		return operations;
+//	}
+//	public void setOperations(Collection<Operation> cards) {
+//		this.operations = operations;
+//	}
+
     @Override
     public String toString() {
         return "CardEntity [id=" + id +

@@ -22,7 +22,8 @@ public class CardService {
 
 		if(result.size() > 0) {
 			return result;
-		} else {
+		} else
+			{
 			return new ArrayList<Card>();
 		}
 	}

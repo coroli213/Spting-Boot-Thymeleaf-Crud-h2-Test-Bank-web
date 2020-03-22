@@ -28,7 +28,7 @@
         <div class="card-body">
             <div th:switch="${terminals}" class="container my-5">
 
-                <p class="my-5">
+                <p class="my-5" sec:authorize="hasAuthority('ROLE_ADMIN')">
                     <a href="/Terminal/edit" class="btn btn-primary">
                         <i class="fas fa-user-plus ml-2"> Add Terminal </i></a>
                 </p>
