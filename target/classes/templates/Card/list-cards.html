@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>All Cards</title>
+    <title>All Card</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
@@ -15,20 +15,23 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 
+
     <div th:replace="/fragments/header :: header-css"/>
 
 </head>
 
 <body style="background-color:grey;">
 
+
 <div th:replace="/fragments/header :: header"/>
+
 
 <div class="container my-2">
     <div class="card">
         <div class="card-body">
             <div th:switch="${cards}" class="container my-5">
 
-                <p class="my-5">
+                <p class="my-5" sec:authorize="hasAuthority('ROLE_ADMIN')">
                     <a href="/Card/edit" class="btn btn-primary">
                         <i class="fas fa-user-plus ml-2"> Add Card </i></a>
                 </p>
@@ -45,6 +48,7 @@
                                 <th>Pin</th>
                                 <th>Csv</th>
                                 <th>Owner</th>
+                                <th>Bill</th>
                                 <th sec:authorize="hasAuthority('ROLE_ADMIN')">Edit</th>
                                 <th sec:authorize="hasAuthority('ROLE_ADMIN')">Delete</th>
                             </tr>
@@ -57,6 +61,7 @@
                                 <td th:text="${card.pin}"></td>
                                 <td th:text="${card.csv}"></td>
                                 <td th:text="${card.client.id}"></td>
+                                <td th:text="${card.bill.id}"></td>
 
                                 <td sec:authorize="hasAuthority('ROLE_ADMIN')">
                                     <a th:href="@{/Card/edit/{id}(id=${card.id})}" class="btn btn-primary">
@@ -70,7 +75,6 @@
                                     </a>
                                 </td>
 
-                                </sec:authorize>
                             </tr>
                             </tbody>
                         </table>

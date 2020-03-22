@@ -55,7 +55,7 @@
                     <li class="active"><a th:href="@{/User/edit}"><span sec:authentication="name"></span></a></li>
                 </ul>
 
-                <ul class="nav navbar-nav" sec:authorize="hasAuthority('ROLE_ADMIN')">
+                    <ul class="nav navbar-nav" sec:authorize="hasAuthority('ROLE_ADMIN')">
                     <li class="active"><a th:href="@{/User}">Users</a></li>
                 </ul>
 
